@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanetExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+   transition: color 0.5s ease-in-out;
+}
+
+/* Fondo dinámico */
+.hero {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background 1s ease-in-out;
+    padding-top: 100px;
+    position: relative;
+    z-index: 1;
+}
+/* Colores de texto */
+.text-white {
+    color: white;
+}
+#main-header {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; 
+    background-color: rgba(0, 0, 0, 0.7);  
+    padding: 10px 0;
+}
+#logo-header {
+    float: left;
+    padding: 15px 0 0 30px;
+    text-decoration: none;
+    color: white;
+}
+#logo-header:hover {
+    color: rgb(200, 200, 200);
+}
+        
+#logo-header .site-name {
+    display: block;
+    font-weight: 100;
+    font-size: 2.6em;
+    color: white; 
+}
+        
+#logo-header .site-desc {
+    display: block;
+    font-weight: 700;
+    font-size: 0.6em;
+    color: lightgray; 
+}  
+/*
+ * Navegación
+ */
+nav {
+    float: right;
+}
+nav ul {
+    margin: 5.9px;
+    padding: 0;
+    list-style: none;
+    padding-right: 10px; 
+    background-color: transparent;    
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+
+}
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+}
+nav ul li a {
+    display: block;
+    padding: 0 10px;
+    text-decoration: none;
+    color: white;
+}
+nav ul li a:hover {
+    background: #46DBE0;
+    background: rgba(255, 255, 255, 0.2);
+}
+#imagen {
+    padding: 110px;
+}
+.hero .display-3 {
+    font-size: 3.5em; 
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+}
+.hero .lead {
+    font-size: 1.5em;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7); 
+    font-style: italic; 
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px 20px;
+    border-radius: 8px; 
+    display: inline-block; 
+}
+</style>
+   <header id="main-header">	
+		<a id="logo-header" href="portada.html">
+			<span class="site-name"> PlanetExpress 
+                <img src="img\logo_planet.png" width="50px" height="50px"></span>
+		</a> 
+		<nav>
+			<ul>
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="Información.html">Ubicaciones</a></li>
+                <li><a href="contacto.html">Nosotros</a></li>
+			</ul>
+        </nav>
+    </header>
+<body>
+    <!-- Sección de Bienvenida -->
+    <header class="hero" id="hero">
+        <div class="container text-center text-white">
+            <h1 class="display-3">Explora el Mundo</h1>
+            <p class="lead">Descubre los lugares más increíbles del planeta</p>
+	
+	
+	            <select id="paisSelector" class="form-select w-50 mx-auto mt-3">
+                <option value="mexico">México</option>
+                <option value="francia">Francia</option>
+                <option value="japon">Japón</option>
+                <option value="italia">Italia</option>
+            </select>
+<button id="infoButton" class="btn btn-primary mt-3" style="display: none;">Descubrir</button>
+
+        </div>
+</div>
+    </header>
+     <script>
+// Selección de los elementos
+const hero = document.getElementById("hero");
+const paisSelector = document.getElementById("paisSelector");
+
+// Lista de fondos por país
+const fondos = {
+    mexico: "https://blog.uber-cdn.com/cdn-cgi/image/width=2160,quality=80,onerror=redirect,format=auto/wp-content/uploads/2018/12/MX_Vive-como-nunca-antes-Ciudad-de-M%C3%A9xico-con-estos-X-lugares-de-inter%C3%A9s.jpg",
+    francia: "https://s0.smartresize.com/wallpaper/462/521/HD-wallpaper-paris-night-sky-paris-city-france-night.jpg",
+    japon: "https://himbatours.com/media/k2/items/cache/0a4409fd7de9904a5f786d566e19e14d_L.jpg",
+    italia: "https://giardinodelcarmen.es/wp-content/uploads/2020/02/ciudades-italianas-bonitas.png"
+};
+
+// Función para calcular brillo promedio
+function calcularBrillo(url, callback) {
+    const img = new Image();
+    img.src = url;
+    img.crossOrigin = "Anonymous";
+    img.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = this.width;
+        canvas.height = this.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let brilloTotal = 0;
+        const pixels = imageData.data.length / 4;
+
+        for (let i = 0; i < imageData.data.length; i += 4) {
+            const r = imageData.data[i];
+            const g = imageData.data[i + 1];
+            const b = imageData.data[i + 2];
+            brilloTotal += (r * 0.299 + g * 0.587 + b * 0.114); 
+        }
+
+        callback(brilloTotal / pixels);
+    };
+}
+
+// Función para cambiar el fondo y el color del texto
+function cambiarFondo(pais) {
+    const url = fondos[pais];
+    hero.style.backgroundImage = `url(${url})`;
+
+    calcularBrillo(url, function (brillo) {
+        if (brillo > 128) {
+            document.body.style.color = "black"; 
+        } else {
+            document.body.style.color = "white"; 
+        }
+    });
+}
+
+// Evento para seleccionar país
+paisSelector.addEventListener("change", function () {
+    const pais = paisSelector.value;
+    cambiarFondo(pais);
+});
+
+// Fondo inicial
+window.onload = function () {
+    cambiarFondo("mexico");
+};
+
+const enlaces =   {  
+    mexico: "mexico.html",
+    francia: "francia.html",
+    japon: "japon.html",
+    italia: "italia.html"
+};
+   const infoButton = document.getElementById("infoButton");
+
+function cambiarFondoYPais(pais) {
+    const url = fondos[pais];
+    hero.style.backgroundImage = `url(${url})`;
+
+    calcularBrillo(url, function (brillo) {
+        if (brillo > 128) {
+            document.body.style.color = "black"; 
+        } else {
+            document.body.style.color = "white"; 
+        }
+    });
+
+    // Actualiza el enlace del botón y hazlo visible
+    if (enlaces[pais]) {
+        infoButton.href = enlaces[pais];
+        infoButton.style.display = "inline-block"; 
+        infoButton.textContent = `Descubre más sobre ${pais.charAt(0).toUpperCase() + pais.slice(1)}`;
+     infoButton.onclick = function () {
+            window.location.href = enlaces[pais];
+       };
+    } else {
+        infoButton.style.display = "none"; 
+    }
+}
+
+// Evento para cambiar el fondo y actualizar el botón
+paisSelector.addEventListener("change", function () {
+    const pais = paisSelector.value;
+    cambiarFondoYPais(pais);
+});
+
+// Fondo y botón iniciales
+window.onload = function () {
+    cambiarFondoYPais("mexico");
+};
+
+</script>
+       </body>
+</html>

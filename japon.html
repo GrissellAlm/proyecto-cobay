@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanetExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   </head>
+<style>
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+   transition: color 0.5s ease-in-out;
+}
+
+/* Colores de texto */
+.text-white {
+    color: white;
+}
+#main-header {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; 
+    background-color: rgba(0, 0, 0, 0.7);  
+    padding: 10px 0;
+}
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.menu li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+#logo-header {
+    float: left;
+    padding: 15px 0 0 30px;
+    text-decoration: none;
+    color: white;
+}
+#logo-header:hover {
+    color: rgb(200, 200, 200);
+}
+        
+#logo-header .site-name {
+    display: block;
+    font-weight: 100;
+    font-size: 2.4em;
+    color: white; 
+}
+        
+#logo-header .site-desc {
+    display: block;
+    font-weight: 700;
+    font-size: 0.6em;
+    color: lightgray; 
+}  
+/*
+ * Navegación
+ */
+nav {
+    float: right;
+}
+nav ul {
+    margin: 5.9px;
+    padding: 0;
+    list-style: none;
+    padding-right: 10px; 
+    background-color: transparent;    
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+
+}
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+}
+nav ul li a {
+    display: block;
+    padding: 0 10px;
+    text-decoration: none;
+    color: white;
+}
+nav ul li a:hover {
+    background: #46DBE0;
+    background: rgba(255, 255, 255, 0.2);
+}
+#imagen {
+    padding: 110px;
+}
+.hero .display-3 {
+    font-size: 3.5em; 
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+}
+.hero .lead {
+    font-size: 1.5em;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7); 
+    font-style: italic; 
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px 20px;
+    border-radius: 8px; 
+    display: inline-block; 
+}
+.hero {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background 1s ease-in-out;
+}
+
+#tarjetaContainer {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para las tarjetas */
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 400px;
+}
+#infoSection {
+    padding: 50px 0;
+    background-color: black; 
+    color: white; 
+    text-align: left;
+}
+.info-text {
+    border-left: 4px solid #ED69EC; /* Línea decorativa en el lado izquierdo */
+    padding-left: 15px; /* Espaciado entre la línea y el texto */
+    text-align: left; /* Alinea el texto a la izquierda */
+    font-size: 1.1em;
+    line-height: 1.8; /* Espaciado entre líneas para mejor legibilidad */
+}
+.tarjeta {
+    color: white;
+    font-size: 1.2em;
+}
+
+.tarjeta img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+    #main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        display: none; /* El menú estará oculto por defecto */
+        flex-direction: column;
+        width: 100%;
+        background-color: #333; /* Fondo oscuro para el menú en móvil */
+        padding: 10px 0;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+    /* Estilos para mostrar el menú con el botón */
+    .menu.show {
+        display: flex;
+    }
+
+    /* Botón de menú (hamburguesa) */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+}
+.menu-toggle {
+    display: none; /* Ocultar por defecto */
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Mostrar solo en pantallas pequeñas */
+    }
+}
+#logo-header .site-name {
+    font-size: 2em; /* Tamaño más pequeño en móviles */
+}
+
+@media (max-width: 768px) {
+    #logo-header {
+        padding: 10px; /* Reducir espaciado */
+    }
+    #logo-header img {
+        width: 40px; /* Reducir tamaño del logo */
+        height: 40px;
+    }
+}
+#main-header {
+    display: flex;
+    justify-content: space-between; /* Espacia los elementos */
+    align-items: center; /* Alinea verticalmente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px; /* Añade espaciado alrededor */
+}
+
+.menu-toggle {
+    margin-left: auto; /* Empuja el botón hacia la derecha */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: none; /* Oculto por defecto */
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Muestra el botón solo en dispositivos móviles */
+        margin-right: 15px; /* Espacio adicional a la derecha */
+    }
+}
+
+#logo-header {
+    display: flex;
+    align-items: center; /* Alinea el texto y el logo verticalmente */
+}
+
+#logo-header .site-name {
+    margin-right: 10px; /* Espacio entre el nombre del sitio y el logo */
+    font-size: 2.4em;
+    color: white;
+}
+.seccion-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.texto-lado-izquierdo {
+    flex: 1;
+    padding: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.texto-lado-izquierdo h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #ED69EC; 
+}
+
+.texto-lado-izquierdo p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.carrusel-lado-derecho {
+    flex: 2;
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; 
+    padding: 10px;
+}
+
+.tarjeta {
+    min-width: 200px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+    padding: 10px;
+    flex: none; 
+}
+
+.tarjeta img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.tarjeta h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.tarjeta p {
+    font-size: 14px;
+}
+.tarjeta img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+</style>
+<body>
+    <!-- Encabezado -->
+   <header id="main-header">	
+		<a id="logo-header" href="portada.html">
+			<span class="site-name"> PlanetExpress 
+                <img src="img\logo_planet.png" width="50px" height="50px"></span>
+		</a> 
+<button class="menu-toggle" aria-label="Abrir menú">☰</button>
+		<nav>
+			<ul class="menu">
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="Información.html">Ubicaciones</a></li>
+                <li><a href="contacto.html">Nosotros</a></li>
+			</ul>
+        </nav>
+
+    </header>
+<div class="hero" id="hero">
+    <div class="container text-center text-white">
+        <h1 class="display-3">Descubre Japón</h1>
+        <div id="tarjetaContainer" class="mt-4">
+            <!-- Aquí se insertarán las tarjetas dinámicamente -->
+
+        </div>
+    </div>
+</div>
+<div id="infoSection" class="container-fluid py-5">
+    <div class="container">
+        <h2 class="mb-4">Acerca de Japón</h2>
+        <div class="info-text">
+            <p>
+               Japón es un destino turístico fascinante que combina modernidad y tradición de una manera única. Desde los vibrantes rascacielos y la vida nocturna de Tokio, hasta los tranquilos templos y jardines zen de Kioto, Japón ofrece experiencias culturales incomparables. Sus maravillas naturales, como el icónico Monte Fuji y los cerezos en flor durante la primavera, atraen a visitantes de todo el mundo. Además, los viajeros pueden explorar castillos históricos, relajarse en aguas termales (onsen) y disfrutar de una gastronomía de renombre mundial, que incluye sushi, ramen y más. Japón es un lugar que ofrece belleza, historia y modernidad en cada rincón. <a href="https://japonismo.com/">Leer más</a>          </p>
+        </div>
+<div class="seccion-inferior">
+    <div class="texto-lado-izquierdo">
+        <h3>Descubre más sobre Japón</h3>
+        <p>Japón destaca por su cultura rica, deliciosa gastronomía, paisajes únicos y experiencias como onsen, templos y festivales tradicionales. Es un equilibrio entre modernidad y tradición.¡Conocelo!
+        </p>
+    </div>
+    <div class="carrusel-lado-derecho">
+        <div class="tarjeta">
+           <a href="tokio.html"> <img src="https://media.admagazine.com/photos/618a6025ac089e092dcbfe42/master/w_1600%2Cc_limit/88202.jpg" alt="Imagen Tarjeta 1"></a>
+            <h4>Tokio</h4>
+            <p>Tokio mezcla tradición, modernidad 
+<br>y vibrante vida urbana.</p>
+        </div>
+        <div class="tarjeta">
+           <a href="kioto.html"> <img src="https://i.pinimg.com/736x/94/df/af/94dfaf0b47d4ea818d7bfb7e9d921113.jpg" alt="Imagen Tarjeta 2"></a>
+            <h4>Kioto</h4>
+            <p>Kioto es famosa por sus templos 
+<br>y barrios tradicionales.</p>
+        </div>
+        <div class="tarjeta">
+            <a href="hiroshima.html"><img src="https://www.descubriendojapon.com/wp-content/uploads/2017/07/Parque-de-la-paz-Hiroshima.jpg" alt="Imagen Tarjeta 3"></a>
+            <h4>Hiroshima</h4>
+            <p>Hiroshima destaca por su Parque de la Paz 
+<br>y la isla Miyajima con su torii "flotante".</p>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+</div>
+
+<script>
+const zonas = [
+    {
+        fondo: "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/490000/490338-lake-kawaguchi.jpg",
+        titulo: "Monte Fmuji",
+        descripcion: "El símbolo más icónico de Japón, ideal para senderismo y vistas espectaculares.",
+        imagen: "https://media.traveler.es/photos/613776a4c6202df759160adf/master/pass/107289.jpg"
+    },
+    {
+        fondo: "https://www.voyages-exception.fr/media_cache/cms_image/upload/images/global/202402/jardin-touristique-monument-osaka-65cb9b9f7f08f601026953.jpg",
+        titulo: "Osaka",
+        descripcion: "Conocida por su vibrante vida nocturna y el Castillo de Osaka.",
+        imagen: "https://cdn.getyourguide.com/img/tour/1e89c24504a0670fad908eeda1d8cd09dfe8b7bccdc57f6050a9bf6078c84afa.jpg/146.jpg"
+    },
+    {
+        fondo: "https://plus.unsplash.com/premium_photo-1661963745503-8b3a86b8c2b1?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9ra2FpZG8lMjBqYXBvbnxlbnwwfHwwfHx8MA%3D%3D",
+        titulo: "Hokkaido",
+        descripcion: "Perfecto para los amantes de la naturaleza, con paisajes impresionantes y estaciones de esquí.",
+        imagen: "https://www.jal.co.jp/es/es/guide-to-japan/destinations/articles/hokkaido/best-parks-and-nature-attractions/_jcr_content/root/responsivegrid/sectioncontainer/image_1041888335.coreimg.jpeg/1674022305830.jpeg"
+    }
+];
+const hero = document.getElementById("hero");
+const tarjetaContainer = document.getElementById("tarjetaContainer");
+
+let indice = 0;
+
+function actualizarContenido() {
+    const zona = zonas[indice];
+
+    // Cambiar el fondo
+    hero.style.backgroundImage = `url(${zona.fondo})`;
+
+    // Cambiar la tarjeta
+    tarjetaContainer.innerHTML = `
+        <div class="tarjeta">
+            <img src="${zona.imagen}" alt="${zona.titulo}">
+            <h2>${zona.titulo}</h2>
+            <p>${zona.descripcion}</p>
+        </div>
+    `;
+
+    // Avanzar al siguiente índice
+    indice = (indice + 1) % zonas.length; // Reinicia el índice al llegar al final
+}
+
+// Actualiza el contenido cada 5 segundos
+setInterval(actualizarContenido, 5000);
+
+// Inicializa el contenido al cargar la página
+window.onload = actualizarContenido;
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.menu');
+
+menuToggle.addEventListener('click', () => {
+    menu.classList.toggle('show'); // Alternar visibilidad
+    const expanded = menu.classList.contains('show');
+    menuToggle.setAttribute('aria-expanded', expanded); // Actualizar atributo aria-expanded
+});
+// Agregar evento de scroll
+window.addEventListener('scroll', verificarVisibilidad);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanetExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            transition: color 0.5s ease-in-out;
+        }
+        #main-header {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100; 
+            background-color: rgba(0, 0, 0, 0.7);  
+            padding: 19px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+        .menu li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+        .menu li a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+        #logo-header {
+            display: flex;
+            align-items: center;
+            padding-left: 35px;
+            color: white;
+            text-decoration: none;
+        }
+        #logo-header img {
+            margin-left: 10px;
+        }
+        .background {
+            position: relative;
+            height: 100vh;
+            background-image: url('https://panavision-tours.es/viajes/bolonia-italia/bolonia.jpg');            
+            background-size: cover;
+            background-position: center;
+        }
+        .blurred-side {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .cards-container {
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            background-color:  rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            width: 200px;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .card p {
+            margin: 10px 0 0;
+            font-size: 14px;
+            color: white;
+        }
+
+.title {
+    position: absolute;
+    top: 30%;
+    right: 25%;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: 'Cinzel', serif; 
+    font-size: 10em; 
+    text-align: center;
+}
+
+/* Ajuste solo para teléfonos */
+@media (max-width: 768px) {
+    .title {
+        top: auto; 
+        bottom: 20%; 
+        right: 5%; 
+        transform: rotate(-90deg); 
+        font-size: 2rem; 
+        text-align: right; 
+    }
+}
+   #logo-header .site-name {
+    display: block;
+    font-weight: 100;
+    font-size: 2.4em;
+    color: white; 
+}
+@media (max-width: 768px) {
+    #main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        background-color: #333; 
+        padding: 10px 0;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+    /* Estilos para mostrar el menú con el botón */
+    .menu.show {
+        display: flex;
+    }
+
+    /* Botón de menú (hamburguesa) */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+}
+.menu-toggle {
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; 
+    }
+}
+#logo-header .site-name {
+    font-size: 2em; 
+}
+
+@media (max-width: 768px) {
+    #logo-header {
+        padding: 10px; 
+    }
+    #logo-header img {
+        width: 40px; 
+        height: 40px;
+    }
+}
+#main-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px; 
+}
+
+.menu-toggle {
+    margin-left: auto; 
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; 
+        margin-right: 15px; 
+    }
+}
+
+#logo-header {
+    display: flex;
+    align-items: center; 
+}
+
+#logo-header .site-name {
+    margin-right: 10px; 
+    font-size: 2.4em;
+    color: white;
+}
+.seccion-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+.info-section {
+    background-color: black; 
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.info-section h2 {
+    font-size: 2.5em;
+    font-family: 'Cinzel', serif; 
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.info-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.info-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.info-content ul {
+    list-style: circle;
+    padding: 0;
+}
+
+.info-content ul li {
+    font-size: 1em;
+    margin: 10px 0;
+    color: #fff;
+}
+
+.info-image {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.footer {
+    background-color: #333; 
+    color: #fff; 
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    gap: 20px;
+}
+
+.footer-info h3, .footer-social h4 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-family: 'Cinzel', serif;
+}
+
+.footer-info p {
+    font-size: 1em;
+    color: #ccc;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; 
+}
+
+.social-icons a {
+    display: inline-block;
+}
+
+.icon {
+    width: 40px; 
+    height: 40px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.icon:hover {
+    transform: scale(1.2); 
+}
+
+.footer-credits {
+    text-align: center;
+    border-top: 1px solid #444; 
+    padding-top: 10px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; 
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header id="main-header">
+        <a id="logo-header" href="portada.html">
+            <span class="site-name">PlanetExpress</span> 
+            <img src="img\logo_planet.png" alt="Logo" width="50px" height="50px">
+        </a> 
+<button class="menu-toggle" aria-label="Abrir menú">☰</button>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Información.html">Ubicaciones</a></li>
+                <li><a href="contacto.html">Nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Fondo con tarjetas y título -->
+    <div class="background">
+        <div class="blurred-side">
+            <div class="cards-container">
+                <div class="card">
+                    <img src="img/tos.jpg" alt="Lugar 1">
+                    <p>Las Dos Torres (Asinelli y Garisenda)</p>
+                </div>
+                <div class="card">
+                    <img src="img/pla.jpg" alt="Lugar 2">
+                    <p>Piazza Maggiore </p>
+                </div>
+                <div class="card">
+                    <img src="img/bass.jpg" alt="Lugar 3">
+                    <p>Basílica de San Petronio</p>
+                </div>
+            </div>
+        </div>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+        <div class="title">Bolonia</div>
+    </div>
+<script>
+  document.querySelector('.menu-toggle').addEventListener('click', function () {
+    document.querySelector('.menu').classList.toggle('show');
+  });
+</script>
+<section id="about-guanajuato" class="info-section">
+    <h2>Sobre Bolonia</h2>
+    <div class="info-content">
+        <p>
+            Bolonia es conocida por ser el hogar de la universidad más antigua del mundo occidental. Su arquitectura medieval, los icónicos pórticos (pasillos cubiertos) y sus famosas torres le dan un encanto histórico. Además, es la capital gastronómica de Italia, famosa por su salsa boloñesa y sus pastas frescas.
+        </p>
+        <ul>
+            <li><strong>Fundación:</strong> Siglo VI aC </li>
+            <li><strong>Atracciones principales:</strong> Las Dos Torres (Asinelli y Garisenda), 
+                Piazza Maggiore,
+                Basílica de San Petronio,
+                Universidad de Bolonia y los 
+                Pórticos de Bolonia</li>
+            <li><strong>Fiestas destacadas:</strong> Fiesta de San Petronio y La Notte Bianca</li>
+        </ul>
+        <img src="img/bol.jpeg" alt="Vista de Guanajuato" class="info-image">
+    </div>
+</section>
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Información general -->
+        <div class="footer-info">
+            <h3>Sobre esta página</h3>
+            <p>Bolonia es una ciudad universitaria llena de vida, con una mezcla única de historia, cultura y gastronomía. Además, caminar bajo sus pórticos es una experiencia única
+            </p>
+        </div>
+
+        <!-- Redes sociales con íconos -->
+        <div class="footer-social">
+            <h4>Síguenos en redes sociales</h4>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="img/ga.png" alt="Facebook" class="icon">
+                </a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <img src="img/in.png" alt="Instagram" class="icon">
+                </a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                    <img src="img/t.png" alt="Twitter" class="icon">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-credits">
+        <p>© 2025 PlanetExpress. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+</body>
+</html>

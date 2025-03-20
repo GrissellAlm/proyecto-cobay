@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanetExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   </head>
+<style>
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+   transition: color 0.5s ease-in-out;
+}
+
+/* Colores de texto */
+.text-white {
+    color: white;
+}
+#main-header {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; 
+    background-color: rgba(0, 0, 0, 0.7);  
+    padding: 100px 0;
+}
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.menu li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+#logo-header {
+    float: left;
+    padding: 15px 0 0 30px;
+    text-decoration: none;
+    color: white;
+}
+#logo-header:hover {
+    color: rgb(200, 200, 200);
+}
+        
+#logo-header .site-name {
+    display: block;
+    font-weight: 100;
+    font-size: 13em;
+    color: white; 
+}
+        
+#logo-header .site-desc {
+    display: block;
+    font-weight: 700;
+    font-size: 0.6em;
+    color: lightgray; 
+}  
+/*
+ * Navegación
+ */
+nav {
+    float: right;
+}
+nav ul {
+    margin: 5.9px;
+    padding: 0;
+    list-style: none;
+    padding-right: 10px; 
+    background-color: transparent;    
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+
+}
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+}
+nav ul li a {
+    display: block;
+    padding: 0 10px;
+    text-decoration: none;
+    color: white;
+}
+nav ul li a:hover {
+    background: #46DBE0;
+    background: rgba(255, 255, 255, 0.2);
+}
+#imagen {
+    padding: 110px;
+}
+.hero .display-3 {
+    font-size: 3.5em; 
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+}
+.hero .lead {
+    font-size: 1.5em;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7); 
+    font-style: italic; 
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px 20px;
+    border-radius: 8px; 
+    display: inline-block; 
+}
+.hero {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background 1s ease-in-out;
+}
+
+#tarjetaContainer {
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 400px;
+}
+#infoSection {
+    padding: 50px 0;
+    background-color: black; 
+    color: white; 
+    text-align: left;
+}
+.info-text {
+    border-left: 4px solid #50C878; 
+    padding-left: 15px; 
+    text-align: left; 
+    font-size: 1.1em;
+    line-height: 1.8; 
+}
+.tarjeta {
+    color: white;
+    font-size: 1.2em;
+}
+
+.tarjeta img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+    #main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        background-color: #333; 
+        padding: 10px 0;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+    .menu.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+}
+.menu-toggle {
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; 
+    }
+}
+#logo-header .site-name {
+    font-size: 2em; 
+}
+
+@media (max-width: 768px) {
+    #logo-header {
+        padding: 10px; 
+    }
+    #logo-header img {
+        width: 40px; 
+        height: 40px;
+    }
+}
+#main-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 0px; 
+}
+
+.menu-toggle {
+    margin-left: auto; 
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; 
+        margin-right: 15px; 
+    }
+}
+
+#logo-header {
+    display: flex;
+    align-items: center; 
+}
+
+#logo-header .site-name {
+    margin-right: 10px; 
+    font-size: 2.4em;
+    color: white;
+}
+.seccion-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.texto-lado-izquierdo {
+    flex: 1;
+    padding: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.texto-lado-izquierdo h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #50C878; 
+}
+
+.texto-lado-izquierdo p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.carrusel-lado-derecho {
+    flex: 2;
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; 
+    padding: 10px;
+}
+
+.tarjeta {
+    min-width: 200px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+    padding: 10px;
+    flex: none; 
+}
+
+.tarjeta img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.tarjeta h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.tarjeta p {
+    font-size: 14px;
+}
+.tarjeta img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; 
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+</style>
+<body>
+    <!-- Encabezado -->
+   <header id="main-header">	
+		<a id="logo-header" href="portada.html">
+			<span class="site-name"> PlanetExpress 
+                <img src="img\logo_planet.png" width="50px" height="50px"></span>
+		</a> 
+<button class="menu-toggle" aria-label="Abrir menú">☰</button>
+		<nav>
+			<ul class="menu">
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="Información.html">Ubicaciones</a></li>
+                <li><a href="contacto.html">Nosotros</a></li>
+			</ul>
+        </nav>
+
+    </header>
+<div class="hero" id="hero">
+    <div class="container text-center text-white">
+        <h1 class="display-3">Descubre Italia</h1>
+        <div id="tarjetaContainer" class="mt-4">
+            
+        </div>
+    </div>
+</div>
+<div id="infoSection" class="container-fluid py-5">
+    <div class="container">
+        <h2 class="mb-4">Acerca de Italia</h2>
+        <div class="info-text">
+            <p>
+Italia es un país que enamora por su combinación de historia, arte y paisajes impresionantes. Desde las ruinas del Imperio Romano en Roma y las románticas góndolas de Venecia, hasta los tesoros renacentistas de Florencia y las paradisíacas costas de Amalfi, Italia ofrece algo para todos. 
+<br>Su gastronomía es legendaria, con platos como la pizza napolitana, la pasta y el gelato, que conquistan paladares en cada rincón.  
+
+Además, Italia es hogar de viñedos excepcionales en la Toscana, lagos de ensueño como el Lago de Como y montañas espectaculares en los Alpes. Su rica cultura, reflejada en la moda, la música y las tradiciones, garantiza una experiencia única e inolvidable para los visitantes.<a href="https://blog-italia.com/"> Leer más</a>   </p>
+        </div>
+<div class="seccion-inferior">
+    <div class="texto-lado-izquierdo">
+        <h3>Descubre más sobre Italia</h3>
+        <p>Desde los coloridos pueblos de Cinque Terre y las ruinas de Pompeya, hasta el Lago di Garda y las paradisíacas playas de Cerdeña, Italia combina historia, paisajes y sabores inolvidables.¡Italia es el destino perfecto para descubrir, disfrutar y soñar!
+        </p>
+    </div>
+    <div class="carrusel-lado-derecho">
+        <div class="tarjeta">
+             <a href="napoles.html"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/28/4a/2a/caption.jpg?w=600&h=500&s=1" alt="Imagen Tarjeta 1"></a>
+           <h4>Nápoles</h4>
+            <p>Con su vibrante cultura, deliciosa pizza 
+<br>y proximidad a Pompeya y Capri.</p>
+        </div>
+        <div class="tarjeta">
+            <a href="bolonia.html"><img src="https://img2.rtve.es/a/6434018/square/?h=320" alt="Imagen Tarjeta 2"></a>
+            <h4>Bolonia</h4>
+            <p>Famosa por su arquitectura medieval, su 
+<br>gastronomía y sus portales históricos.</p>
+        </div>
+        <div class="tarjeta">
+            <a href="turin.html"><img src="https://www.gastroactitud.com/wp-content/uploads/2022/11/turin-destacada.jpg" alt="Imagen Tarjeta 3"></a>
+            <h4>Turin</h4>
+            <p>Una joya al norte, conocida por <br>sus elegantes plazas,el Museo Egipcio<br> y su papel en la historia del cine.".</p>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+</div>
+
+<script>
+const zonas = [
+    {
+        fondo: "https://www.fulltravel.it/wp-content/uploads/2019/11/Cosa-vedere-a-Roma.jpg?x44065",
+        titulo: "Roma",
+        descripcion: "Roma, la Ciudad Eterna, destaca por el Coliseo, el Vaticano y la Fontana de Trevi.",
+        imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG188IO9YIT7MzBA9IAomBbrpnoCnB3PDlbIIJGTPAPw1r4Mtm83VrCmW88X1h4eqIfhE&usqp=CAU"
+    },
+    {
+        fondo: "https://imagenes.heraldo.es/files/image_1920_1080/uploads/imagenes/2019/09/29/uno-de-los-pequenos-canales-de-venecia.jpeg",
+        titulo: "Venecia",
+        descripcion: "La ciudad de los canales, famosa por sus paseos en góndola, la Plaza de San Marcos y su atmósfera romántica.",
+        imagen: "https://media.istockphoto.com/id/1483118824/es/foto/canales-de-venecia-y-la-arquitectura-italia.jpg?s=612x612&w=0&k=20&c=NNanTus3T9vX_mJ1H_9qFeA0fCj5UGwPR3Jy7s8cbN0="
+    },
+    {
+        fondo: "https://viajaleaks.com/wp-content/uploads/2020/02/Que-ver-cerca-de-Florencia-p.png",
+        titulo: "Florencia",
+        descripcion: "La cuna del Renacimiento, repleta de arte y arquitectura, como el Duomo y la Galería Uffizi.",
+        imagen: "https://www.enflorencia.com/wp-content/uploads/2020/09/Excursion-Cinque-Terre.jpg"
+    }
+];
+const hero = document.getElementById("hero");
+const tarjetaContainer = document.getElementById("tarjetaContainer");
+
+let indice = 0;
+
+function actualizarContenido() {
+    const zona = zonas[indice];
+
+    // Cambiar el fondo
+    hero.style.backgroundImage = `url(${zona.fondo})`;
+
+    // Cambiar la tarjeta
+    tarjetaContainer.innerHTML = `
+        <div class="tarjeta">
+            <img src="${zona.imagen}" alt="${zona.titulo}">
+            <h2>${zona.titulo}</h2>
+            <p>${zona.descripcion}</p>
+        </div>
+    `;
+
+    // Avanzar al siguiente índice
+    indice = (indice + 1) % zonas.length; // Reinicia el índice al llegar al final
+}
+
+// Actualiza el contenido cada 5 segundos
+setInterval(actualizarContenido, 5000);
+
+// Inicializa el contenido al cargar la página
+window.onload = actualizarContenido;
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.menu');
+
+menuToggle.addEventListener('click', () => {
+    menu.classList.toggle('show'); // Alternar visibilidad
+    const expanded = menu.classList.contains('show');
+    menuToggle.setAttribute('aria-expanded', expanded); // Actualizar atributo aria-expanded
+});
+// Agregar evento de scroll
+window.addEventListener('scroll', verificarVisibilidad);
+
+</script>
+</body>
+</html>

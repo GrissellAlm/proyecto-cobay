@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanetExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   </head>
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+   transition: color 0.5s ease-in-out;
+   background-image: url('https://i0.wp.com/rrppguatemala.com/wp-content/uploads/2023/02/Conoce-los-lugares-turisticos-mas-famosos-de-Guatemala-Lago-de-Atitlan.jpg?fit=3736%2C2475&ssl=1')
+}
+#main-header {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; 
+    background-color: rgba(0, 0, 0, 0.7);  
+    padding: 10px 0;
+}
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.menu li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+#logo-header {
+    float: left;
+    padding: 15px 0 0 30px;
+    text-decoration: none;
+    color: white;
+}
+#logo-header:hover {
+    color: rgb(200, 200, 200);
+}
+        
+#logo-header .site-name {
+    display: block;
+    font-weight: 100;
+    font-size: 2.4em;
+    color: white; 
+}
+        
+#logo-header .site-desc {
+    display: block;
+    font-weight: 700;
+    font-size: 0.6em;
+    color: lightgray; 
+}  
+/*
+ * Navegación
+ */
+nav {
+    float: right;
+}
+nav ul {
+    margin: 5.9px;
+    padding: 0;
+    list-style: none;
+    padding-right: 10px; 
+    background-color: transparent;    
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+
+}
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+}
+nav ul li a {
+    display: block;
+    padding: 0 10px;
+    text-decoration: none;
+    color: white;
+}
+nav ul li a:hover {
+    background: #46DBE0;
+    background: rgba(255, 255, 255, 0.2);
+}
+#imagen {
+    padding: 110px;
+}
+@media (max-width: 768px) {
+    #main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        background-color: #333; 
+        padding: 10px 0;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+    
+    .menu.show {
+        display: flex;
+    }
+
+    /* Botón de menú (hamburguesa) */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+}
+.menu-toggle {
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; 
+    }
+}
+#logo-header .site-name {
+    font-size: 2em; 
+}
+
+@media (max-width: 768px) {
+    #logo-header {
+        padding: 10px; 
+    }
+    #logo-header img {
+        width: 40px; 
+        height: 40px;
+    }
+}
+#main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px; 
+}
+
+.menu-toggle {
+    margin-left: auto; 
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; 
+        margin-right: 15px; 
+    }
+}
+
+#logo-header {
+    display: flex;
+    align-items: center; 
+}
+
+#logo-header .site-name {
+    margin-right: 10px;
+    font-size: 2.4em;
+    color: white;
+}
+.section {
+            padding: 40px 20px;
+            max-width: 900px;
+            text-align: center;
+            margin: 40px auto;
+        }
+
+        .section h2 {
+            padding: 90px;
+            font-size: 2rem;
+            margin-bottom: 0;
+            color: #444;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .footer {
+    background-color: #333; 
+    color: #fff; 
+    padding: 60px 0;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    gap: 20px;
+}
+
+.footer-info h3, .footer-social h4 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-family: 'Cinzel', serif;
+}
+
+.footer-info p {
+    font-size: 1em;
+    color: #ccc;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; 
+}
+
+.social-icons a {
+    display: inline-block;
+}
+
+.icon {
+    width: 40px; 
+    height: 40px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.icon:hover {
+    transform: scale(1.2); 
+}
+
+.footer-credits {
+    text-align: center;
+    border-top: 1px solid #444; 
+    padding-top: 10px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; 
+    }
+}
+.table-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #ff9800;
+            color: white;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        td a {
+            color: #ff9800;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+</style>
+<body>
+    <!-- Encabezado -->
+   <header id="main-header">	
+		<a id="logo-header" href="portada.html">
+			<span class="site-name"> PlanetExpress 
+                <img src="img\logo_planet.png" width="50px" height="50px"></span>
+		</a> 
+<button class="menu-toggle" aria-label="Abrir menú">☰</button>
+		<nav>
+			<ul class="menu">
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="Información.html">Ubicaciones</a></li>
+                <li><a href="contacto.html">Nosotros</a></li>
+			</ul>
+        </nav>
+    </header>
+
+    <div class="section" id="quienes-somos">
+        <h2>Quiénes Somos</h2>
+        <p>En <strong>PlanetExpress</strong>, nos apasiona conectar a las personas con experiencias únicas y destinos inolvidables. Nuestra misión es transformar cada viaje en una aventura que inspire, sorprenda y cree recuerdos duraderos.</p>
+        <p>Con un equipo dedicado de expertos en turismo y una red de socios de confianza, diseñamos itinerarios personalizados para explorar la riqueza cultural, natural y gastronómica de cada lugar. Desde escapadas románticas hasta aventuras familiares, Planet Express está aquí para hacer realidad tus sueños de viaje.</p>
+    </div>
+    <div class="table-container">
+        <h2>Información de Planet Express</h2>
+        <table>
+            <tr>
+                <th>Aspecto</th>
+                <th>Detalles</th>
+            </tr>
+            <tr>
+                <td>Misión</td>
+                <td>Conectar a las personas con experiencias únicas y destinos inolvidables.</td>
+            </tr>
+            <tr>
+                <td>Visión</td>
+                <td>Ser la agencia de turismo líder en crear aventuras transformadoras.</td>
+            </tr>
+            <tr>
+                <td>Valores</td>
+                <td>Innovación, calidad, confianza y pasión por el descubrimiento.</td>
+            </tr>
+            <tr>
+                <td>Servicios</td>
+                <td>- Exploración cultural<br>- Aventuras naturales<br>- Escapadas de lujo<br>- Viajes personalizados</td>
+            </tr>
+            <tr>
+                <td>Contacto</td>
+                <td>Email: <a href="mailto:info@planetexpress.com">info@planetexpress.com</a><br>Tel: +52 555 123 4567</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+          document.querySelector('.menu').classList.toggle('show');
+        });
+      </script>
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Información general -->
+            <div class="footer-info">
+    <div class="footer-social">
+        <h4>Síguenos en redes sociales</h4>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                <img src="img/ga.png" alt="Facebook" class="icon">
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                <img src="img/in.png" alt="Instagram" class="icon">
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                <img src="img/t.png" alt="Twitter" class="icon">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="footer-credits">
+    <p>© 2025 PlanetExpress. Todos los derechos reservados.</p>
+</div>
+</footer>
+
+</body>
+</html>

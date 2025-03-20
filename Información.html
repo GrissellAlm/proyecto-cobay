@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanetExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   </head>
+<style>
+#main-header {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; 
+    background-color: rgba(0, 0, 0, 0.7);  
+    padding: 10px 0;
+}
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.menu li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+#logo-header {
+    float: left;
+    padding: 15px 0 0 30px;
+    text-decoration: none;
+    color: white;
+}
+#logo-header:hover {
+    color: rgb(200, 200, 200);
+}
+        
+#logo-header .site-name {
+    display: block;
+    font-weight: 100;
+    font-size: 2.4em;
+    color: white; 
+}
+        
+#logo-header .site-desc {
+    display: block;
+    font-weight: 700;
+    font-size: 0.6em;
+    color: lightgray; 
+}  
+/*
+ * Navegación
+ */
+nav {
+    float: right;
+}
+nav ul {
+    margin: 5.9px;
+    padding: 0;
+    list-style: none;
+    padding-right: 10px; 
+    background-color: transparent;    
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+
+}
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+}
+nav ul li a {
+    display: block;
+    padding: 0 10px;
+    text-decoration: none;
+    color: white;
+}
+nav ul li a:hover {
+    background: #46DBE0;
+    background: rgba(255, 255, 255, 0.2);
+}
+#imagen {
+    padding: 110px;
+}
+@media (max-width: 768px) {
+    #main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        background-color: #333; 
+        padding: 10px 0;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+    
+    .menu.show {
+        display: flex;
+    }
+
+    /* Botón de menú (hamburguesa) */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+}
+.menu-toggle {
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; 
+    }
+}
+#logo-header .site-name {
+    font-size: 2em; 
+}
+
+@media (max-width: 768px) {
+    #logo-header {
+        padding: 10px; 
+    }
+    #logo-header img {
+        width: 40px; 
+        height: 40px;
+    }
+}
+#main-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px; 
+}
+
+.menu-toggle {
+    margin-left: auto; 
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; 
+        margin-right: 15px; 
+    }
+}
+
+#logo-header {
+    display: flex;
+    align-items: center; 
+}
+
+#logo-header .site-name {
+    margin-right: 10px; 
+    font-size: 2.4em;
+    color: white;
+}
+.seccion-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+.texto-lado-izquierdo {
+    flex: 1;
+    padding: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+    /* Ajustes globales */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: black;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('https://elnoti.com/wp-content/uploads/2016/04/Los-lugares-m%C3%A1s-bellos-del-planeta.jpg'); /* Cambia esta URL por la imagen deseada */
+        background-size: cover; /* Hace que la imagen cubra todo el fondo */
+        background-repeat: no-repeat; /* Evita que la imagen se repita */
+        background-position: center; /* Centra la imagen */
+    }
+
+    .header-text {
+        text-align: center;
+        margin-bottom: 20px; /* Espaciado entre el texto y el carrusel */
+    }
+
+    .header-text h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .header-text p {
+        font-size: 1.2rem;
+        font-style: italic;
+        color: lightgray;
+    }
+
+    .carousel-container {
+        width: 95%;
+        max-width: 700px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .carousel {
+        display: flex;
+        transition: transform 0.6s ease-in-out;
+        gap: 30px;
+    }
+
+    .card {
+        flex: 0 0 30%;
+        max-width: 500px;
+        height: 400px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        20% { transform: translateX(0); }
+        25% { transform: translateX(-100%); }
+        45% { transform: translateX(-100%); }
+        50% { transform: translateX(-200%); }
+        70% { transform: translateX(-200%); }
+        75% { transform: translateX(-300%); }
+        100% { transform: translateX(0); }
+    }
+
+    .carousel {
+        animation: scroll 15s infinite;
+    }
+
+    /* Responsividad */
+    @media (max-width: 480px) {
+        .header-text h1 {
+            font-size: 1.5rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+        }
+
+        .card {
+            flex: 0 0 90%;
+            height: 250px;
+        }
+
+        .card img {
+            height: 150px;
+        }
+    }
+           /* Responsividad */
+           @media (min-width: 1024px) {
+    .card {
+        flex: 0 0 20%; /* Ajusta este valor según lo que consideres óptimo */
+        height: 300px;
+    }
+}
+        @media (max-width: 768px) { /* Tablets */
+            .card {
+                flex: 0 0 70%;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) { /* Teléfonos */
+            .card {
+                flex: 0 0 90%;
+                height: 220px;
+            }
+        }
+        .ubi{
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+        color: white;
+        }
+        @media (min-width: 1024px) {
+    .carousel {
+        animation: none; /* Detiene la animación */
+    }
+}
+@media (min-width: 1024px) {
+    .carousel {
+        justify-content: center;
+    }
+}
+
+</style>
+<body>
+       <!-- Encabezado -->
+   <header id="main-header">	
+    <a id="logo-header" href="portada.html">
+        <span class="site-name"> PlanetExpress 
+            <img src="img\logo_planet.png" width="50px" height="50px"></span>
+    </a> 
+<button class="menu-toggle" aria-label="Abrir menú">☰</button>
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="Información.html">Ubicaciones</a></li>
+            <li><a href="contacto.html">Nosotros</a></li>
+        </ul>
+    </nav>
+</header>
+    <!-- Texto sobre las tarjetas -->
+    <div class="header-text">
+        <h1>Descubre destinos únicos</h1>
+        <p>Explora el mundo desde la comodidad de tu hogar</p>
+    </div>
+
+    <!-- Carrusel -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="card">
+                <img src="https://s0.smartresize.com/wallpaper/462/521/HD-wallpaper-paris-night-sky-paris-city-france-night.jpg" alt="Destino 1">
+                <a class="ubi" href="https://earth.google.com/web/search/Francia/@46.11068134,2.59106921,545.55699728a,1650383.41026914d,35y,0h,0t,0r/data=CnUaRxJBCiQweGQ1NGEwMjkzMzc4NTczMToweDZiZmQzZjk2Yzc0N2Q5ZjcZ1qnyPSMdR0Ah8GskCcK1AUAqB0ZyYW5jaWEYAiABIiYKJAkVijsqRPZAQBFKNKYpl7EEwBnxHpn4gANHwCHzMrEH1uZjwEICCAE6AwoBMEICCABKDQj___________8BEAA"> ver ubicacion</a>
+            </div>
+            <div class="card">
+                <img src="https://blog.uber-cdn.com/cdn-cgi/image/width=2160,quality=80,onerror=redirect,format=auto/wp-content/uploads/2018/12/MX_Vive-como-nunca-antes-Ciudad-de-M%C3%A9xico-con-estos-X-lugares-de-inter%C3%A9s.jpg" alt="Destino 2">
+                <a class="ubi" href="//earth.google.com/web/search/mexico/@23.5541269,-102.62050005,2071.54620303a,4364316.95579721d,35y,0h,0t,0r/data=CiwiJgokCTC7M4NH6TRAEev8hWXt6DRAGdd5QhC4aFbAIW0-FxjDaFbAQgIIAToDCgEwQgIIAEoNCP___________wEQAA"> ver ubicacion</a>
+            </div>
+            <div class="card">
+                <img src="https://himbatours.com/media/k2/items/cache/0a4409fd7de9904a5f786d566e19e14d_L.jpg" alt="Destino 3">
+                <a class="ubi" href="https://earth.google.com/web/search/Jap%c3%b3n/@33.5002443,137.1532702,6.34468518a,3970482.78800185d,35y,0h,0t,0r/data=CnUaRxJBCiUweDM0Njc0ZTBmZDc3ZjE5MmY6MHhmNTQyNzVkNDdjNjY1MjQ0Gcu3Pqw3GkJAIfSLEvQXSGFAKgZKYXDDs24YAiABIiYKJAm9WGX-iAVJQBG45XT6MgpEQBku6HYennMzQCE9Gjws8okswEICCAE6AwoBMEICCABKDQj___________8BEAA"> ver ubicacion</a>
+            </div>
+            <div class="card">
+                <img src="https://giardinodelcarmen.es/wp-content/uploads/2020/02/ciudades-italianas-bonitas.png" alt="Destino 4">
+                <a class="ubi" href="https://earth.google.com/web/search/italia/@41.28788895,12.75945737,44.30685745a,1865015.84457477d,35y,0h,0t,0r/data=CnUaRxJBCiUweDEyZDRmZTgyNDQ4ZGQyMDM6MHhlMjJjZjU1YzI0NjM1ZTZmGYAJ3Lqb70RAIRjPoKF_IilAKgZpdGFsaWEYAiABIiYKJAmAp0k92npEQBHkNVTFmTUpQBmDZ4KRQHNlQCEjnM6cDfxlwEICCAE6AwoBMEICCABKDQj___________8BEAA"> ver ubicacion</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+          document.querySelector('.menu').classList.toggle('show');
+        });
+      </script>
+</body>
